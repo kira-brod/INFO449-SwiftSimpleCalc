@@ -27,11 +27,121 @@ print("Welcome to the UW Calculator Playground")
 //: For this latter set of operations, it is safe to assume that `["count"]` (with no additional arguments) is 0, `["avg"]` is also 0, and `["fact"]` is 0. `["1", "fact"]` should return 1, and `["0", "fact"]` should also return 1. (Yes, 0-factorial is 1. True story.)
 //: 
 func calculate(_ args: [String]) -> Int {
-    return -1
+    
+    if args.count == 3 {
+        guard
+            let number = Int(args[0]),
+            let number2 = Int(args[2])
+        else { return 0 }
+        
+        if args[1] == "+" {
+            return number + number2
+        } else if args[1] == "-" {
+            return number - number2
+        } else if args[1] == "/" {
+            return number / number2
+        } else if args[1] == "*" {
+            return number * number2
+        } else {
+            return number % number2
+        }
+        
+        
+    } else if args[args.count - 1] == "count"{
+        return args.count - 1
+    } else if args[args.count - 1] == "avg" {
+        if args.count > 1 {
+            var arraylist:[Int] = [0]
+            for index in 0..<(args.count - 1) {
+                guard let number = Int(args[index]) else {return 0 }
+                arraylist.append(number)
+            }
+            
+            var sum = arraylist.reduce(0, +)
+            return sum/(args.count-1)
+        } else {
+            return 0
+        }
+    } else if args[args.count - 1] == "fact" {
+        
+        guard let number = Int(args[0]) else {return 0}
+        var product = 1
+        
+        
+        if (number == 0 || number == 1) {
+            return 1
+        } else {
+            for var i in 1...number {
+                product = product * i
+                i+=1
+            }
+            
+            return product
+        }
+        
+    } else {
+        return -1
+    }
 }
 
+
 func calculate(_ arg: String) -> Int {
-    return -1
+    let args = arg.split(separator: " ")
+   
+    if args.count == 3 {
+        guard
+            let number = Int(args[0]),
+            let number2 = Int(args[2])
+        else { return 0 }
+        
+        if args[1] == "+" {
+            return number + number2
+        } else if args[1] == "-" {
+            return number - number2
+        } else if args[1] == "/" {
+            return number / number2
+        } else if args[1] == "*" {
+            return number * number2
+        } else {
+            return number % number2
+        }
+        
+        
+    } else if args[args.count - 1] == "count"{
+        return args.count - 1
+    } else if args[args.count - 1] == "avg" {
+        if args.count > 1 {
+            var arraylist:[Int] = [0]
+            for index in 0..<(args.count - 1) {
+                guard let number = Int(args[index]) else {return 0 }
+                arraylist.append(number)
+            }
+            
+            var sum = arraylist.reduce(0, +)
+            return sum/(args.count-1)
+        } else {
+            return 0
+        }
+    } else if args[args.count - 1] == "fact" {
+        
+        guard let number = Int(args[0]) else {return 0}
+        var product = 1
+        
+        
+        if (number == 0 || number == 1) {
+            return 1
+        } else {
+            for var i in 1...number {
+                product = product * i
+                i+=1
+            }
+            
+            return product
+        }
+        
+    } else {
+        return -1
+    }
 }
 
 //: Below this are the test expressions/calls to verify if your code is correct.
@@ -85,7 +195,7 @@ calculate("5 fact") == 120
 //: Implement `calculate([String])` and `calculate(String)` to handle negative numbers. You need only make the tests below pass. (You do not need to worry about "fact"/factorial with negative numbers, for example.)
 //:
 //: This is worth 1 pt
-/*
+
 calculate(["2", "+", "-2"]) == 0
 calculate(["2", "-", "-2"]) == 4
 calculate(["2", "*", "-2"]) == -4
@@ -100,7 +210,7 @@ calculate("2 - -2") == 4
 calculate("-2 / 2") == -1
 
 calculate("1 -2 3 -4 5 count") == 5
-*/
+
  
 //: Implement `calculate([String])` and `calculate(String)` to use 
 //: and return floating-point values. You need only make the tests 
@@ -112,19 +222,19 @@ calculate("1 -2 3 -4 5 count") == 5
 //: Integer-based versions above.
 //: 
 //: This is worth 1 pt
-/*
-func calculate(_ args: [String]) -> Double {
-    return -1.0
-}
-func calculate(_ arg: String) -> Double {
-    return -1.0
-}
 
-calculate(["2.0", "+", "2.0"]) == 4.0
-calculate([".5", "+", "1.5"]) == 2.0
-calculate(["12.0", "-", "12.0"]) == 0.0
-calculate(["2.5", "*", "2.5"]) == 6.25
-calculate(["2.0", "/", "2.0"]) == 1.0
-calculate(["2.0", "%", "2.0"]) == 0.0
-calculate("1.0 2.0 3.0 4.0 5.0 count") == 5.0
-*/
+//func calculate(_ args: [String]) -> Double {
+//    return -1.0
+//}
+//func calculate(_ arg: String) -> Double {
+//    return -1.0
+//}
+//
+//calculate(["2.0", "+", "2.0"]) == 4.0
+//calculate([".5", "+", "1.5"]) == 2.0
+//calculate(["12.0", "-", "12.0"]) == 0.0
+//calculate(["2.5", "*", "2.5"]) == 6.25
+//calculate(["2.0", "/", "2.0"]) == 1.0
+//calculate(["2.0", "%", "2.0"]) == 0.0
+//calculate("1.0 2.0 3.0 4.0 5.0 count") == 5.0
+
