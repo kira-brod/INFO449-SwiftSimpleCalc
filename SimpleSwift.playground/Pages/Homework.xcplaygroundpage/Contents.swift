@@ -28,7 +28,7 @@ print("Welcome to the UW Calculator Playground")
 //: 
 func calculate(_ args: [String]) -> Int {
     
-    if args.count == 3 {
+    if args.count == 3 && (args.contains("+") || args.contains("-") || args.contains("/") || args.contains("*") || args.contains("%"))   {
         guard
             let number = Int(args[0]),
             let number2 = Int(args[2])
@@ -88,7 +88,7 @@ func calculate(_ args: [String]) -> Int {
 func calculate(_ arg: String) -> Int {
     let args = arg.split(separator: " ")
    
-    if args.count == 3 {
+    if args.count == 3 && (args.contains("+") || args.contains("-") || args.contains("/") || args.contains("*") || args.contains("%")){
         guard
             let number = Int(args[0]),
             let number2 = Int(args[2])
